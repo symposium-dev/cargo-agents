@@ -1,19 +1,28 @@
 # cargo-agents
 
-Cargo subcommand for agentic development workflows.
+Cargo subcommand for agentic development workflows. Acts as a thin wrapper around [symposium](https://github.com/symposium-dev/symposium).
+
+## Installation
 
 ```
 cargo install cargo-agents
-cargo agents
 ```
 
-## About
+## Usage
 
-`cargo-agents` is a general-purpose entry point for supporting agentic development in the Rust ecosystem. It provides tooling and conventions for building, testing, and managing projects that incorporate AI agents into the development loop.
+```
+cargo agents [args...]
+```
 
-## Status
+All arguments are forwarded directly to `symposium`. If `symposium` is not installed, `cargo-agents` will prompt you to install it automatically using `cargo binstall` (if available) or `cargo install`.
 
-Early development. The crate name is claimed to anchor the `cargo agents` subcommand namespace for the community.
+## How it works
+
+`cargo-agents` reserves the `cargo agents` subcommand namespace and delegates to the `symposium` binary:
+
+1. Looks for `symposium` on your `PATH`
+2. If found, executes it with all provided arguments
+3. If not found, offers to install it for you
 
 ## License
 
